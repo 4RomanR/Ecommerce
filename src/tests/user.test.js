@@ -28,7 +28,7 @@ test("GETALL -> 'URL_USERS', should return status code 200, res.body toBeDefined
     .set('Authorization', `Bearer ${TOKEN}`)
 
     expect(res.status).toBe(200)
-    expect(res.body).toBe()
+    expect(res.body).toBeDefined()
     expect(res.body).toHaveLength(1)
 })
 test("POST -> 'URL_USERS', should return status code 201, res.body toBeDefined and res.body.firstName === user.firstName", async () => {
