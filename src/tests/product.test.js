@@ -55,6 +55,9 @@ test("GETONE -> 'URL_PRODUCT/:id' should return status 200, toBeDefined and res.
     expect(res.status).toBe(200)
     expect(res.body).toBeDefined()
     expect(res.body.title).toBe(product.title)
+    expect(res.body.categoryId).toBeDefined()
+    expect(res.body.categoryId).toBe(category.id)
+    
 })
 
 test("PUT -> 'URL_PRODUCT/:id', should return status 200, toBeDefined and res.body.title === 'Plato'", async () => {
@@ -74,4 +77,5 @@ test("DELETE -> 'URL_PRODUCT/:id', should return status 204", async () => {
     .set("Authorization", `Bearer ${TOKEN}`)
 
     expect(res.status).toBe(204)
+    await category.destroy()
 })
