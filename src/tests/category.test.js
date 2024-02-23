@@ -1,6 +1,6 @@
 const request = require("supertest")
 const app = require("../app")
-
+require('../models')
 const URL_CATEGORY = "/categories"
 const URL_USERS = '/users'
 const category = {
@@ -39,7 +39,7 @@ test("GETALL -> 'URL_CATEGORY', should return status 200, res.body toBeDefined a
     expect(res.body).toBeDefined()
     expect(res.body).toHaveLength(1)
 })
-test("GETALL -> 'URL_CATEGORY/:id', should return status 204", async () => {
+test("DELETE -> 'URL_CATEGORY/:id', should return status 204", async () => {
     const res = await request(app)
     .delete(`${URL_CATEGORY}/${categoryId}`)
     .set("Authorization", `Bearer ${TOKEN}`)

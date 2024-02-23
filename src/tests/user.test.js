@@ -40,7 +40,7 @@ test("POST -> 'URL_USERS', should return status code 201, res.body toBeDefined a
     expect(res.body).toBeDefined()
     expect(res.body.firstName).toBe(user.firstName)
 })
-test("PUT -> 'URL_USERS', should return status code 200, res.body toBeDefined and res.body.firstName = 'Frednerys'", async () => {
+test("PUT -> 'URL_USERS/:id', should return status code 200, res.body toBeDefined and res.body.firstName = 'Frednerys'", async () => {
     const res = await request(app)
     .put(`${URL_USERS}/${userId}`)
     .send({firstName:'Frednerys'})
