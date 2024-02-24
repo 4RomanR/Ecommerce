@@ -2,16 +2,31 @@ const catchError = require('../utils/catchError');
 const Purchase = require('../models/Purchase');
 const User = require('../models/User');
 const Product = require('../models/Product');
+const Cart = require('../models/Cart');
 
 const getAll = catchError(async(req, res) => {
+    const userId = req.user.id
     const results = await Purchase.findAll({
-        include: [User, Product]
+        where: { userId },
+        include: [{
+            model: Product,
+            attributes: {exclude:['createdAt', 'updatedAt']}
+        }]
     });
     return res.json(results);
 });
 
 const create = catchError(async(req, res) => {
-    const result = await Purchase.create(req.body);
+    const userId = req.user.id
+    const cart = await Cart.findAll({
+        where: { userId },
+        raw: true,
+        attributes: ['quantity', 'userId', 'producId']
+    });
+    if(!cart) return res.sendStatus(404)
+    const result = await Purchase.bulkCreate(cart)
+    if(!result) return res.sendStatus(404)
+    await Cart.destroy({ where: { userId } })
     return res.status(201).json(result);
 });
 
