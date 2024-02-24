@@ -30,6 +30,16 @@ test("POST -> 'URL_PURCHASE', should return status 201, toBeDefined and res.body
     expect(res.status).toBe(201)
     expect(res.body).toBeDefined()
     expect(res.body.quantity).toBe(purchase.quantity)
+
 })
 
-test("")
+test("GETALL -> 'URL_PURCHASE', should return status 200, toBeDefined and res.body.length === 1, ... ", async () => {
+    const res = await request(app)
+    .get(URL_PURCHASE)
+    .set('Authorization', `Bearer ${TOKEN}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body).toBeDefined()
+    expect(res.body).toHaveLength(1)
+    
+})
