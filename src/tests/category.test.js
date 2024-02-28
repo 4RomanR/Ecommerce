@@ -1,6 +1,7 @@
+require('../models')
 const request = require("supertest")
 const app = require("../app")
-require('../models')
+
 const URL_CATEGORY = "/categories"
 const URL_USERS = '/users'
 const category = {
@@ -45,5 +46,5 @@ test("DELETE -> 'URL_CATEGORY/:id', should return status 204", async () => {
     .set("Authorization", `Bearer ${TOKEN}`)
 
     expect(res.status).toBe(204)
-   
+    
 })

@@ -18,9 +18,5 @@ const Product = sequelize.define('product', {
     //categoryId
 });
 
-//User.prototype.toJSON = function () {
-//	const values = { ...this.get() };
-//	delete values.password ;
-//	return values;
-//};
+
 module.exports = Product;
