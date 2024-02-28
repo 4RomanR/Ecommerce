@@ -8,13 +8,12 @@ const Product = sequelize.define('product', {
         unique:true
     },
     description: {
-        type: DataTypes.TEXT,
-        allowNull: false,
+        type: DataTypes.TEXT
          
     },
     price: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        
     },
     //categoryId
 });

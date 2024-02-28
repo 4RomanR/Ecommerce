@@ -3,22 +3,20 @@ const Cart = require('../models/Cart');
 const User = require('../models/User');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
+const ProductImg = require('../models/ProductImg');
 
 const getAll = catchError(async(req, res) => {
     const userId = req.user.id    
     const results = await Cart.findAll({
         where: {userId},
-        include:[
-            {
-                model: Product,
-                attributes: {exclude:['createdAt', ]},
-                include:{
-                    model: Category,
-                    attributes:['name']
-
-                }
-            }
-        ]
+        include:
+        [{
+            model: Product,
+            attributes: {exclude:['createdAt', 'updatedAt']},
+            include:[{
+            model: Category, attributes:['name']
+            }]
+        }]
     });
     return res.json(results);
 });
@@ -28,17 +26,14 @@ const getOne = catchError(async(req, res) => {
     const userId = req.user.id  
     const results = await Cart.findByPksi(id, {
         where: { userId },
-        include:[
-            {
-                model: Product,
-                attributes: {exclude:['createdAt', ]},
-                include:{
-                    model: Category,
-                    attributes:['name']
-
-                }
-            }
-        ]
+        include:
+        [{
+            model: Product,
+            attributes: {exclude:['createdAt', 'updatedAt']},
+            include:[{
+            model: Category, attributes:['name']
+            }]
+        }]
     });
     return res.json(results);
 });

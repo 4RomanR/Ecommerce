@@ -11,6 +11,7 @@ const purchase = {
 }
 let product
 
+
 beforeAll( async() => {
     const user = {
         email: "fernando@gmail.com",
